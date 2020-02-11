@@ -30,6 +30,7 @@ if __name__ == '__main__':
         else:
             sleep=0
         time.sleep(sleep)
+        end=time.time()
         fps=1.0/(end-start)
 
 
