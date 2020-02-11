@@ -9,7 +9,7 @@ if __name__ == '__main__':
     #游戏初始化
     pygame.init()
     #设置窗体
-    window=pygame.display.set_mode((600,600))
+    window=pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
     #FPS值
     fps=0
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     #进入第一个页面
 
-    go(FirstPage(surface))
+    go(HomePage(surface))
 
     # page = FirstPage(surface)
     # page = SecondPage(surface)
@@ -38,9 +38,9 @@ if __name__ == '__main__':
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit(0)
-            if event.type==KEYDOWN:
+            if event.type==K_DOWN:
                 key_down(event.key)
-            if event.type == KEYUP:
+            if event.type == K_UP:
                 key_up(event.key)
         #长按事件
         keys=pygame.key.get_pressed()

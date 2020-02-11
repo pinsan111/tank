@@ -1,7 +1,7 @@
 from pygame.locals import *
 from abc import *
 import pygame
-
+from locals import *
 '''
 当前显示页面
 '''
@@ -64,36 +64,40 @@ class Page(metaclass=ABCMeta):
 
 
 
-class FirstPage(Page):
+class HomePage(Page):
 
     def __init__(self, surface):
         super().__init__(surface)
 
-    def render(self):
-        self.surface.fill((0xff,0,0))
+        #导入背景
+        self.bg=pygame.image.load('img/bg.png')
+        self.bg_w=self.bg.get_width()
+        self.bg_h = self.bg.get_height()
+        self.bg_x=(WINDOW_WIDTH-self.bg_w)/2
+        self.bg_y = (WINDOW_HEIGHT - self.bg_h) / 2
 
+        #当前选项
+
+        self.index=0
+        self.positions=[395,450.500]
+
+        self.pointer=pygame.image.load('img/pointer.png')
+        self.p_x =395
+        self.p_y =self.positions[self.index]
+
+    def render(self):
+        #绘制页面
+        self.surface.fill((0,0,0))
+        #显示北京
+        self.surface.blit(self.bg,(self.bg_x,self.bg_y))
+        #显示指针
+        self.surface.blit(self.pointer,(self.p_x,self.p_y))
     def key_down(self,key):
-        if key==K_RETURN:
-            go(SecondPage(self.surface))
+        if key==K_DOWN():
+            #向下移动指针
+            self.index+=1
+            if self.index>=len(self.positions):
+                self.index=0
+            self.p_y =self.positions[self.index]
 
 
-
-class SecondPage(Page):
-
-    def __init__(self, surface):
-        super().__init__(surface)
-
-    def render(self):
-        self.surface.fill((0,0xff,0))
-
-    def key_down(self, key):
-        '''
-        key down事件
-        :param key:用户按下的键
-        :return:
-        '''
-    def key_pressed(self,keys):
-        if keys[K_m]:
-            print('m')
-
-            pass
