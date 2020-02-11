@@ -1,4 +1,23 @@
 from pygame.locals import *
+'''
+当前显示页面
+'''
+__current=None
+
+def go(page):
+    global __current
+    #进入某页面
+    __current=page
+
+def render():
+    '''渲染页面'''
+    __current.render()
+
+def key_down(key):
+    '''键盘按下事件'''
+    __current.key_down(key)
+
+
 
 class FirstPage:
 
@@ -13,8 +32,7 @@ class FirstPage:
         :return:
         '''
         if key==K_RETURN:
-            print('切换')
-        print('page1')
+            go(SecondPage(self.surface))
 
         pass
 
@@ -30,7 +48,6 @@ class SecondPage:
         :param key:用户按下的键
         :return:
         '''
-        print('page2')
 
 
         pass

@@ -15,7 +15,11 @@ if __name__ == '__main__':
 
     surface=pygame.Surface(WINDOW_SIZE)
 
-    page = FirstPage(surface)
+    #进入第一个页面
+
+    go(FirstPage(surface))
+
+    # page = FirstPage(surface)
     # page = SecondPage(surface)
 
     while True:
@@ -24,7 +28,7 @@ if __name__ == '__main__':
         #渲染逻辑事件
         # 页面渲染的容器surface
         window.blit(surface,(0,0))
-        page.render()
+        render()
         #flip
         pygame.display.flip()
         #事件
@@ -37,7 +41,7 @@ if __name__ == '__main__':
             if event.type==KEYDOWN:
                 # if event.type==K_RETURN:
                 #     page=SecondPage(surface)
-                page.key_down(event.key)
+                key_down(event.key)
 
         #获取结束时间戳
         end=time.time()
