@@ -8,17 +8,30 @@ import pygame
 __current=None
 
 def go(page):
-    global __current
-    #进入某页面
-    __current=page
+    if page is not None and isinstance(page, Page):
+        global __current
+        #进入某页面
+        __current=page
 
 def render():
-    '''渲染页面'''
-    __current.render()
+    if __current is not None and isinstance(__current, Page):
+        '''渲染页面'''
+        __current.render()
 
 def key_down(key):
     '''键盘按下事件'''
-    __current.key_down(key)
+    if __current is not None and isinstance(__current, Page):
+        __current.key_down(key)
+
+def key_up(key):
+    '''键盘抬起事件'''
+    if __current is not None and isinstance(__current, Page):
+        __current.key_up(key)
+
+def key_pressed(keys):
+    '''键盘长按事件'''
+    if __current is not None and isinstance(__current, Page):
+        __current.key_pressed(keys)
 
 #页面对象
 
@@ -44,6 +57,10 @@ class Page(metaclass=ABCMeta):
         :param key:按下的键
         :return:
         '''
+    def key_up(self,key):
+        pass
+    def key_pressed(self,keys):
+        pass
 
 
 
@@ -75,7 +92,8 @@ class SecondPage(Page):
         :param key:用户按下的键
         :return:
         '''
-        print('2')
+    def key_pressed(self,keys):
+        if keys[K_m]:
+            print('m')
 
-
-        pass
+            pass

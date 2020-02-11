@@ -39,9 +39,13 @@ if __name__ == '__main__':
                 pygame.quit()
                 sys.exit(0)
             if event.type==KEYDOWN:
-                # if event.type==K_RETURN:
-                #     page=SecondPage(surface)
                 key_down(event.key)
+            if event.type == KEYUP:
+                key_up(event.key)
+        #长按事件
+        keys=pygame.key.get_pressed()
+        key_pressed(keys)
+
 
         #获取结束时间戳
         end=time.time()
