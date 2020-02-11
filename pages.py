@@ -1,4 +1,5 @@
 from pygame.locals import *
+from abc import *
 '''
 当前显示页面
 '''
@@ -17,6 +18,15 @@ def key_down(key):
     '''键盘按下事件'''
     __current.key_down(key)
 
+#页面对象
+
+class Page(metaclass=ABCMeta):
+    '''
+    如创造新的页面需继承我，
+    需要吧page做成抽象类 abstract class
+    起规范作用，自身不可实例化
+    '''
+    pass
 
 
 class FirstPage:
